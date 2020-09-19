@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Your Next Appointmens</h1>
+</div>
+
+@*Input for searching appointments*@
+<form>
+    <p>
+        Appointments until: <input type="date" asp-for="SelectedDate" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Details)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Appointment)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    <a asp-page="/Appointments/Details" asp-route-id="@item.Id">Details</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
