@@ -28,6 +28,7 @@ namespace AppointmentTracker.Pages
         }
 
         public IList<Appointment> Appointment { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public DateTime SelectedDate { get; set; }
       

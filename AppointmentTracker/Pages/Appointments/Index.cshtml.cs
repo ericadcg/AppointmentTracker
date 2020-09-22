@@ -19,12 +19,28 @@ namespace AppointmentTracker.Pages.Appointments
             _context = context;
         }
 
-        public IList<Appointment> Appointment { get;set; }
+        public IList<Appointment> FutureAppointment { get;set; }
+
+        public IList<Appointment> PastAppointment { get; set; }
 
         public async Task OnGetAsync()
         {
-            Appointment = await _context.Appointment
+           
+            //Gets future appointments
+            var AuxAppointments = from a in _context.Appointment.Where(b => DateTime.Compare(b.StartDate, DateTime.Now) > 0) select a;
+
+            FutureAppointment = await AuxAppointments
                 .Include(a => a.Client).ToListAsync();
+
+            FutureAppointment.OrderBy(a => a.StartDate);
+
+            //Gets past appointments
+            var AuxAppointment2 = from a in _context.Appointment.Where(b => DateTime.Compare(b.StartDate, DateTime.Now) < 0 ) select a;
+                               
+            PastAppointment = await AuxAppointment2
+                .Include(c => c.Client).ToListAsync();
+
+            PastAppointment.OrderByDescending(a => a.StartDate);           
         }
     }
 }

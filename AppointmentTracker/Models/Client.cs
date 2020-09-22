@@ -33,5 +33,16 @@ namespace AppointmentTracker.Models
         [Display(Name = "Client Since")]
         [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; }
+
+        [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
+        public string Email { get; set; }
+
+        [Display(Name = "Name")]
+        public string FullName { get => FirstName + " " + LastName; }
+
+        [Display(Name = "Address")]
+        public string FullAddress { get => AddressLine1 + " " + AddressLine2 + ", " + City + ", " + Country; }
+
+
     }
 }

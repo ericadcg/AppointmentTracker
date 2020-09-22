@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AppointmentTracker.Data;
 using AppointmentTracker.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentTracker.Pages.Appointments
 {
@@ -40,6 +41,7 @@ namespace AppointmentTracker.Pages.Appointments
             _context.Appointment.Add(Appointment);
             await _context.SaveChangesAsync();
 
+            
             return RedirectToPage("./Index");
         }
     }

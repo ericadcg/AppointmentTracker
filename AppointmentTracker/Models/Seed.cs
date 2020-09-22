@@ -37,7 +37,8 @@ namespace AppointmentTracker.Models
                         AddressLine2 = "N45",
                         City= "Porto",
                         Country = "Portugal",
-                        AddedDate = DateTime.Parse("2020-09-19")
+                        AddedDate = DateTime.Parse("2020-09-19"),
+                        Email = "edc.gomes@hotmail.com"
                     },
 
                     new Client

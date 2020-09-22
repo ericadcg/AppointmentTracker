@@ -29,7 +29,6 @@ namespace AppointmentTracker.Pages.Clients
 
         [BindProperty(SupportsGet = true)]
         public string SelectedCity { get; set; }
-        //To be implemented dropdown with cities
 
         public async Task OnGetAsync()
         {
@@ -46,7 +45,7 @@ namespace AppointmentTracker.Pages.Clients
             if (!string.IsNullOrEmpty(SearchString))
             {
                 //Checks if search string is in the firstName or in the last name
-                clients = clients.Where(s => s.FirstName.Contains(SearchString) || s.LastName.Contains(SearchString) || SearchString==s.FirstName+" "+s.LastName);
+                clients = clients.Where(s => s.FullName.Contains(SearchString));
             }
 
             if (!string.IsNullOrEmpty(SelectedCity))

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AppointmentTracker.Data;
 using AppointmentTracker.Models;
 
+
 namespace AppointmentTracker.Pages.Appointments
 {
     public class DetailsModel : PageModel
@@ -36,6 +37,20 @@ namespace AppointmentTracker.Pages.Appointments
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            Appointment = await _context.Appointment
+                .Include(a => a.Client).FirstOrDefaultAsync(m => m.Id == id);
+
+            EmailHandler smtp = new EmailHandler();
+                
+            //Sends email with Appointment message
+            await smtp.SendMailAsync(smtp.CreateAppointmentEmail(Appointment));
+            
+            return Page();
+
         }
     }
 }

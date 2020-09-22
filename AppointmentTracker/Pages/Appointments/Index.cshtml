@@ -5,8 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>List of All Appointments</h1>
-
+<h3>List of Future Appointments</h3>
+<br />
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -14,41 +14,90 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].StartDate)
+                @Html.DisplayNameFor(model => model.FutureAppointment[0].StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].EndDate)
+                @Html.DisplayNameFor(model => model.FutureAppointment[0].EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Client)
+                @Html.DisplayNameFor(model => model.FutureAppointment[0].Client)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Details)
+                @Html.DisplayNameFor(model => model.FutureAppointment[0].Details)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Appointment) {
+        @foreach (var item in Model.FutureAppointment)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+<h3>List of Past Appointments</h3>
+<br />
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.PastAppointment[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PastAppointment[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PastAppointment[0].Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PastAppointment[0].Details)
+            </th>
+            <th></th>
         </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PastAppointment)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> 
+                </td>
+            </tr>
+        }
+
+
     </tbody>
 </table>

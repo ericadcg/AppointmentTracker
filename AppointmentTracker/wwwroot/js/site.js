@@ -2,3 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your Javascript code.
+$(function () {
+    $('button[data-toggle="ajax-modal"]').click(function (event) {
+        alert('Email sent successfully');
+    });
+});

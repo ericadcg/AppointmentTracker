@@ -17,7 +17,7 @@ namespace AppointmentTracker.Models
         public DateTime EndDate { get; set; }
 
         public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
 
         public string Details { get; set; }
 
