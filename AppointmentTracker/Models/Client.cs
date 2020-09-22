@@ -18,7 +18,7 @@ namespace AppointmentTracker.Models
         [Required(ErrorMessage = "{0} is mandatory")]
         public string LastName { get; set; }
 
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Phone")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Address Line 1")]

@@ -20,6 +20,7 @@ namespace AppointmentTracker.Pages.Clients
         }
 
         public Client Client { get; set; }
+        public IList<Appointment> Appointment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -34,6 +35,12 @@ namespace AppointmentTracker.Pages.Clients
             {
                 return NotFound();
             }
+
+            var auxAppointment = from a in _context.Appointment.Where(b => b.ClientId==id) select a;
+
+            Appointment = await auxAppointment
+                .Include(c => c.Client).ToListAsync(); 
+
             return Page();
         }
 
